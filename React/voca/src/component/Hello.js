@@ -1,26 +1,28 @@
-// const Hello = () => {
-//   <p>Hello</p>;
-// };
+import { useState } from "react";
 
-// export default Hello; 
+export default function Hello({age}) {
+  const [name, setName] = useState('Mike');
+  const [newAge, setAge] = useState(age);
+  const msg = age > 19 ? "adult" : "juvenile";
 
-//=>
-
-import World from "./World";
-import styles from "./Hello.module.css";
-
-export default function Hello() {
   return (
     <div>
-      <h1 style={
-        {
-          color: '#f00',
-          borderRight: '2px solid #000',
-          marginBottom: "50px",
-          opacity : 0.5,
-        }
-      }>Hello</h1>
-      <div className={styles.box}>Hello</div>
+      <h2 id="name">
+        {name}({newAge}) : {msg}
+      </h2>
+      <button onClick={() => {
+        setName(name ==="Mike" ? "Jane" : "Mike");
+        setAge(newAge + 1)
+      }}
+      >
+        +
+      </button>
+      <button onClick={() => {
+        setAge(newAge - 1)
+      }}
+      >
+        -
+      </button>
     </div>
   );
 }
